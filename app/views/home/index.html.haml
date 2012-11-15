@@ -1,0 +1,7 @@
+%h1 Home#index
+%p Find me in app/views/home/index.html.haml
+- if user_signed_in?
+  = link_to "Sign Out","/users/sign_out"
+  = link_to "Test mail","/send_email"
+- else
+  = link_to "Sign in","/users/sign_in"
