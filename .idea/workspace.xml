@@ -19,10 +19,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="33" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
+            <state line="21" column="0" selection-start="384" selection-end="384" vertical-scroll-proportion="0.69455254">
               <folding />
             </state>
           </provider>
@@ -73,10 +73,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="birthday_reminder_email.html.haml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="birthday_reminder_email.html.haml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/employee_mailer/birthday_reminder_email.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="0.522541">
+            <state line="15" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="-9.807693">
               <folding />
             </state>
           </provider>
@@ -100,10 +100,10 @@
         <option value="$PROJECT_DIR$/config/environments/development.rb" />
         <option value="$PROJECT_DIR$/app/views/home/index.html.haml" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/controllers/home_controller.rb" />
         <option value="$PROJECT_DIR$/config/schedule.rb" />
         <option value="$PROJECT_DIR$/app/views/employee_mailer/birthday_reminder_email.html.haml" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -454,13 +454,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="33" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/mailers/employee_mailer.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="6" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0">
@@ -484,7 +477,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/employee_mailer/birthday_reminder_email.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="0.522541">
+        <state line="15" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="-9.807693">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="384" selection-end="384" vertical-scroll-proportion="0.69455254">
           <folding />
         </state>
       </provider>
