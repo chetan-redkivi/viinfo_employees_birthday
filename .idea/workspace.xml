@@ -22,25 +22,25 @@
       <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0">
+            <state line="9" column="44" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="application.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/application.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="42" selection-start="2707" selection-end="2745" vertical-scroll-proportion="0.7">
+            <state line="57" column="42" selection-start="2707" selection-end="2745" vertical-scroll-proportion="-11.741936">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schedule.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="schedule.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/schedule.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="7" selection-start="458" selection-end="458" vertical-scroll-proportion="0.0">
+            <state line="16" column="33" selection-start="484" selection-end="484" vertical-scroll-proportion="0.4936479">
               <folding />
             </state>
           </provider>
@@ -50,7 +50,12 @@
         <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="14" column="44" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0">
-              <folding />
+              <folding>
+                <marker date="1353004408000" expanded="true" signature="49:1955" placeholder="do ... end" />
+                <marker date="1353004408000" expanded="true" signature="207:323" placeholder="#..." />
+                <marker date="1353004408000" expanded="true" signature="372:1632" placeholder="#..." />
+                <marker date="1353004408000" expanded="true" signature="1664:1951" placeholder="#..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,7 +73,10 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="8" column="0" selection-start="81" selection-end="195" vertical-scroll-proportion="0.0">
-              <folding />
+              <folding>
+                <marker date="1353006721000" expanded="true" signature="80:200" placeholder=" ... end" />
+                <marker date="1353006721000" expanded="true" signature="85:194" placeholder="#..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -115,10 +123,10 @@
         <option value="$PROJECT_DIR$/app/views/home/index.html.haml" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/controllers/home_controller.rb" />
-        <option value="$PROJECT_DIR$/config/schedule.rb" />
         <option value="$PROJECT_DIR$/app/views/employee_mailer/birthday_reminder_email.html.haml" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/config/application.rb" />
+        <option value="$PROJECT_DIR$/config/schedule.rb" />
       </list>
     </option>
   </component>
@@ -465,7 +473,10 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="81" selection-end="195" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <marker date="1353006721000" expanded="true" signature="80:200" placeholder=" ... end" />
+            <marker date="1353006721000" expanded="true" signature="85:194" placeholder="#..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -479,14 +490,12 @@
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="44" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/schedule.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="7" selection-start="458" selection-end="458" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <marker date="1353004408000" expanded="true" signature="49:1955" placeholder="do ... end" />
+            <marker date="1353004408000" expanded="true" signature="207:323" placeholder="#..." />
+            <marker date="1353004408000" expanded="true" signature="372:1632" placeholder="#..." />
+            <marker date="1353004408000" expanded="true" signature="1664:1951" placeholder="#..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -497,16 +506,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
+    <entry file="file://$USER_HOME$/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/rdoc/ghost_method.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/application.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="42" selection-start="2707" selection-end="2745" vertical-scroll-proportion="0.7">
+        <state line="57" column="42" selection-start="2707" selection-end="2745" vertical-scroll-proportion="-11.741936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="44" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/schedule.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="33" selection-start="484" selection-end="484" vertical-scroll-proportion="0.4936479">
           <folding />
         </state>
       </provider>

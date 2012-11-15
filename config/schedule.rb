@@ -14,7 +14,7 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 #   rake "some:great:rake:task"
 # end
 #
-every 2.minutes do
+every 1.days, :at => '4:30 am' do
   rake "viinfo:birthday_notification"
 end
 
