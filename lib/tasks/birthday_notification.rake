@@ -1,9 +1,7 @@
 namespace :viinfo  do
   desc "Send birthday notification to all employees"
   task :birthday_notification => :environment do
-    @user = User.all.first
     current_date = DateTime.now.new_offset(5.5/24).strftime('%a, %d %b %Y').to_date
-
     employees_who_have_birthday_today = Employee.where('date_of_birth =?',current_date)
     unless employees_who_have_birthday_today.blank?
       @person_names = []
