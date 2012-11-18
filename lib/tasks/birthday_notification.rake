@@ -15,13 +15,11 @@ namespace :viinfo  do
     employees.each do |employee|
       unless employee.email.nil?
         is_employee_has_birthday = employees_who_have_birthday_today.include?(employee)
-
         if is_employee_has_birthday
           EmployeeMailer.birthday_wish_email(employee).deliver
         else
           EmployeeMailer.birthday_reminder_email(employee,@person_names.join(',')).deliver
         end
-
       end
     end
   end
