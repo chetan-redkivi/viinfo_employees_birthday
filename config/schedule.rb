@@ -6,7 +6,7 @@
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 # Example:
 #
- set :output, "/public/birthday_notifications/cron_log.log"
+ set :output, "/var/www/rails_apps/viinfo_employees_birthday/public/birthday_notifications/cron_log.log"
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -14,7 +14,7 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 #   rake "some:great:rake:task"
 # end
 #
-every 1.days, :at => '4:30 am' do
+every 1.days  do
   rake "viinfo:birthday_notification"
 end
 
