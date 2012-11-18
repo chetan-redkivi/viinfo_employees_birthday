@@ -20,8 +20,8 @@ ViinfoEmployeesBirthday::Application.configure do
       :address => "smtp.sendgrid.net",
       :port => 587,
       :domain => "example.com",
-      :user_name => "chetankumar.virtueinfo@gmail.com",
-      :password => "chetan12",
+      :user_name => "maxstar123",
+      :password => "123456#",
       :authentication => "plain",
       :enable_starttls_auto => true
   }
