@@ -21,7 +21,7 @@ ViinfoEmployeesBirthday::Application.configure do
       :port => 587,
       :domain => "baci.lindsaar.net",
       :user_name => "chetankumar.virtueinfo@gmail.com",
-      :password => "chetan12",
+      :password => "chetan21",
       :authentication => "plain",
       :enable_starttls_auto => true
   }

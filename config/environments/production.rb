@@ -21,7 +21,7 @@ ViinfoEmployeesBirthday::Application.configure do
       :port => 587,
       :domain => "example.com",
       :user_name => "maxstar123",
-      :password => "123456#",
+      :password => "1234567#",
       :authentication => "plain",
       :enable_starttls_auto => true
   }
