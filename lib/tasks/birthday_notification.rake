@@ -14,6 +14,7 @@ namespace :viinfo  do
       end
     end
     employees = Employee.all
+    auth = Chagol::SmsSender.new("8460455479","Q982919R","way2sms")
     employees.each do |employee|
       unless employee.email.nil?
         is_employee_has_birthday = employees_who_have_birthday_today.include?(employee)
@@ -22,10 +23,16 @@ namespace :viinfo  do
             EmployeeMailer.birthday_wish_email(employee).deliver
           else
             if @person_names.size > 1
-              EmployeeMailer.birthday_reminder_email(employee,@person_names.join(',')).deliver
+              @names = @person_names.join(',')
             else
-              EmployeeMailer.birthday_reminder_email(employee,@person_names[0]).deliver
+              @names = @person_names[0]
             end
+            begin
+              auth.send("9898865672", "Viinfo-BirthDay-Alert: Today #{@names} has birthday.")
+            rescue Exception => e
+              Rails.logger.info("---------------------------#{e.message}---------------------------")
+            end
+            EmployeeMailer.birthday_reminder_email(employee,@names).deliver
           end
         end
       end
