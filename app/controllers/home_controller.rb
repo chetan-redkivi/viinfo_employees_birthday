@@ -2,7 +2,24 @@ class HomeController < ApplicationController
   require 'chagol'
 
   def index
-
+    @graph = Koala::Facebook::API.new('AAAGg0P6LI3IBACVGic40QiYt3ytQSrOWtTCuQ7mAAZAhcIr7pWYeVeYXEb1cbDPIuv7Qd0x70MRoKwfn0S6LEityqyZBs1SrDKQF22dQZDZD')
+    @current_date = DateTime.now.new_offset(5.5/24).strftime('%m-%d-%Y').split('-')
+    current_month = DateTime.now.new_offset(5.5/24).strftime('%b')
+    @friends_profile = @graph.get_connections("me", "friends", "fields"=>"name,birthday,gender,link")
+    @today_birthday = []
+    @friends_profile.each do |friend|
+      if !friend["birthday"].nil?
+        birthday = friend["birthday"].split('/')
+        if @current_date[0] == birthday[0]
+          #month is same
+          if @current_date[1]==birthday[1]
+            #Date is same
+            #@today_birthday << friend["id"]
+            @today_birthday <<  {"name" => friend["name"],"birthday" => "#{birthday[1]}"+" #{current_month}","id" => friend["id"],"link" => friend["link"]}
+          end
+        end
+      end
+    end
   end
 
   def send_email

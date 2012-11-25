@@ -1,6 +1,5 @@
 ViinfoEmployeesBirthday::Application.routes.draw do
 
-  devise_for :virtue_info_fb_connections , :controllers => { :omniauth_callbacks => "virtue_info_fb_connections/omniauth_callbacks" }
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
@@ -8,6 +7,7 @@ ViinfoEmployeesBirthday::Application.routes.draw do
     match '/users/sign_out' => 'devise/sessions#destroy'
   end
 
+  devise_for :virtue_info_fb_connections , :controllers => { :omniauth_callbacks => "virtue_info_fb_connections/omniauth_callbacks" }
 
 
   # The priority is based upon order of creation:
