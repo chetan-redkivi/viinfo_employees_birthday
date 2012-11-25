@@ -1,5 +1,7 @@
 ViinfoEmployeesBirthday::Application.routes.draw do
 
+  devise_for :virtue_info_fb_connections , :controllers => { :omniauth_callbacks => "virtue_info_fb_connections/omniauth_callbacks" }
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   devise_for :users  do

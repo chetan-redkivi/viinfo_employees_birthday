@@ -27,6 +27,8 @@ end
 gem 'chagol'
 gem 'jquery-rails'
 gem 'devise'
+gem 'omniauth-facebook'
+gem 'koala'
 gem "haml-rails"
 gem 'rails_admin'
 gem 'whenever', :require => false

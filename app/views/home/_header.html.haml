@@ -1,0 +1,45 @@
+#mainWrap
+  #mainPanel
+    #menu
+      %ul
+        %li
+          %a{:href => "#"}
+            %span Home
+        %li
+          .blank
+        %li
+          %a{:href => "#"}
+            %span About Us
+        %li
+          .blank
+        %li
+          %a{:href => "#"}
+            %span Support
+        %li
+          .blank
+        %li
+          %a{:href => "#"}
+            %span Forum
+        %li
+          .blank
+        %li
+          %a{:href => "#"}
+            %span Development
+        %li
+          .blank
+        %li
+          %a{:href => "#"}
+            %span Conact Us
+    #loginPanel
+      %h2 Connect with facebook
+      - if virtue_info_fb_connection_signed_in?
+        Connected
+      - else
+        = link_to image_tag("facebookConnect.png"), virtue_info_fb_connection_omniauth_authorize_path(:facebook),:tag=>"Click For Facebook Login"
+      -#%input{:name => "name", :onblur => "if(this.value=='')this.value='User Name'", :onfocus => "if(this.value=='User Name')this.value=''", :type => "text", :value => "User Name"}/
+      -#.blank
+      -#%input{:name => "name", :onblur => "if(this.value=='')this.value='Password'", :onfocus => "if(this.value=='Password')this.value=''", :type => "text", :value => "Password"}/
+      -#%p
+      -#  Not yet a Member?
+      -#  %a{:href => "#"} Register Now
+      -#%a.login{:href => "#"} Login

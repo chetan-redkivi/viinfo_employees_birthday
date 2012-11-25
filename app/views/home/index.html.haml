@@ -1,7 +1,52 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
-- if user_signed_in?
-  = link_to "Sign Out","/users/sign_out"
-  = link_to "Test mail","/send_email"
-- else
-  = link_to "Sign in","/users/sign_in"
+-#%h1 Home#index
+-#%p Find me in app/views/home/index.html.haml
+-#- if user_signed_in?
+-#  = link_to "Sign Out","/users/sign_out"
+-#  = link_to "Test mail","/send_email"
+-#- else
+-#  = link_to "Sign in","/users/sign_in"
+-#
+-#- if virtue_info_fb_connection_signed_in?
+-#  = link_to "Sign out", "/users/sign_out"
+-#- else
+-#  = link_to image_tag("facebookConnect.png"), virtue_info_fb_connection_omniauth_authorize_path(:facebook),:tag=>"Click For Facebook Login"
+
+
+%table{:style => 'margin:400px 0 0 0 ;width:50%'}
+  - unless @today_birthday.blank?
+    - @today_birthday.each do |today_birthday|
+      %tr
+        %td
+          = today_birthday["name"]
+        %td
+          = today_birthday["birthday"]
+  - else
+    %tr
+      %td{:colspan => 2}
+        Today No one has birthday
+
+
+
+%table{:style => 'margin:100px 0 0 0 ;width:100%'}
+  %tr
+    %td{:colspan => 4}
+      Now you are connected with facebook,Here we show all of your friends with their birthdate
+  %tr
+    %th
+      Name
+    %th
+      Birth Date
+    %th
+      Gender
+    %th
+
+  - @friends_profile.each do |friend|
+    %tr
+      %td{:align => 'center'}
+        = friend["name"]
+      %td{:align => 'center'}
+        = friend["birthday"]
+      %td{:align => 'center'}
+        = friend["gender"]
+      %td{:align => 'center'}
+        = friend["link"]

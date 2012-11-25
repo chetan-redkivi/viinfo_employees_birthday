@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   require 'chagol'
 
   def index
+
   end
 
   def send_email
