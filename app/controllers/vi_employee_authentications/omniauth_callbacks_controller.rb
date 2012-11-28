@@ -8,33 +8,18 @@ class ViEmployeeAuthentications::OmniauthCallbacksController < Devise::OmniauthC
 		else
 			@email = data.email
 		end
-    @user = ViEmployeeAuthentication.find_by_email(@email)
+    @auth = Authentication.find_by_uid_and_vi_employee_authentication_id(data.uid,@email)
 
-    if @user = ViEmployeeAuthentication.find_by_email(@email)
-			@user
+    if @auth.nil?
       authentication = Authentication.new
       authentication.uid = request.env["omniauth.auth"].uid
       authentication.provider = request.env["omniauth.auth"].provider
       authentication.token = request.env["omniauth.auth"].credentials.token
       authentication.secret = request.env["omniauth.auth"].credentials.secret
-      authentication.vi_employee_authentication_id = @user.id
+      authentication.vi_employee_authentication_id = current_vi_employee_authentication.id
       authentication.save
-
-		else # Create a user with a stub password.
-			@user = ViEmployeeAuthentication.new
-
-			@user.email = @email
-			@user.encrypted_password = Devise.friendly_token[0,20]
-			@user.save(:validate => false)
 		end
-
-		if @user.persisted?
-			flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "#{params[:action]}".capitalize
-			sign_in_and_redirect @user, :event => :authentication
-		else
-			session["devise.#{params[:action]}_data"] = request.env["omniauth.auth"]
-			redirect_to new_user_registration_url
-		end
+    redirect_to root_url
   end
 
 
