@@ -20,16 +20,15 @@ ViinfoEmployeesBirthday::Application.configure do
       :address => "smtp.gmail.com",
       :port => 587,
       :domain => "baci.lindsaar.net",
-      :user_name => "chetankumar.123@gmail.com",
-      :password => "123#123",
+      :user_name => "chetankumar.virtueinfo@gmail.com",
+      :password => "12chetan",
       :authentication => "plain",
       :enable_starttls_auto => true
   }
 
-
-
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
+  config.action_mailer.default_url_options = {:host => "localhost:3000"}
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin

@@ -7,14 +7,15 @@ ViinfoEmployeesBirthday::Application.routes.draw do
     match '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  devise_for :virtue_info_fb_connections , :controllers => { :omniauth_callbacks => "virtue_info_fb_connections/omniauth_callbacks" }
-
-
+  devise_for :vi_employee_authentications, :controllers => { :omniauth_callbacks => "vi_employee_authentications/omniauth_callbacks" } do
+    match '/vi_employee_authentications/sign_out' => 'devise/sessions#destroy'
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
-     match '/send_email' => 'home#send_email'
+   match '/send_email' => 'home#send_email'
+   match '/facebook_connect' => 'home#facebook_connect'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
