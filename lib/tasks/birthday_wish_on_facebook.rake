@@ -43,7 +43,6 @@ def wishing_at_facebook_wall(vi_employees)
   rescue Exception => e
     Rails.logger.info("===========================================>Error Message: #{e}")
     Rails.logger.info("===========================================> Internet connection not available or may be it is very slow.")
-
   end
 end
 
