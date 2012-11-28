@@ -22,7 +22,7 @@
         %ul
           %li
             - if user_signed_in?
-              = link_to "Lovout",destroy_user_session_path
+              = link_to "Logout",destroy_user_session_path
             - else
               = link_to "An admin",rails_admin_path
           %li
