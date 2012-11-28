@@ -30,7 +30,7 @@
         %li
           %a{:href => "#"} Last One
   .content
-    - unless current_vi_employee_authentication.nil?
+    - unless current_vi_employee_authentication.present?
       %h3
         = flash[:notice]
       %h1 Welcome to the Virtue-Info Web Apps
@@ -89,7 +89,6 @@
         - else
           %h4
             = flash[:message]
-        - end
       - else
         %p
           if you want to use automated birthday wishing for facebook friends. Please connect with facebook app.

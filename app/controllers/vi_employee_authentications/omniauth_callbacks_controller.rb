@@ -2,24 +2,29 @@ class ViEmployeeAuthentications::OmniauthCallbacksController < Devise::OmniauthC
 	#require 'koala'
   def facebook
 		data = request.env["omniauth.auth"].extra.raw_info
-		session[:access_token] = request.env["omniauth.auth"].credentials.token
+    session[:access_token] = request.env["omniauth.auth"].credentials.token
 		if data.email.nil?
 				@email = data.link
 		else
 			@email = data.email
 		end
-		if @user = ViEmployeeAuthentication.find_by_email(@email)
+    @user = ViEmployeeAuthentication.find_by_email(@email)
+
+    if @user = ViEmployeeAuthentication.find_by_email(@email)
 			@user
-		else # Create a user with a stub password.
       authentication = Authentication.new
       authentication.uid = request.env["omniauth.auth"].uid
       authentication.provider = request.env["omniauth.auth"].provider
       authentication.token = request.env["omniauth.auth"].credentials.token
       authentication.secret = request.env["omniauth.auth"].credentials.secret
+      authentication.vi_employee_authentication_id = @user.id
+      authentication.save
+
+		else # Create a user with a stub password.
 			@user = ViEmployeeAuthentication.new
+
 			@user.email = @email
 			@user.encrypted_password = Devise.friendly_token[0,20]
-      @user.authentication= authentication
 			@user.save(:validate => false)
 		end
 
