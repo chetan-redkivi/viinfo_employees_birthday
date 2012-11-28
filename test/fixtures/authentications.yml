@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  virtue_info_fb_connection_id: 1
+  uid: MyString
+  provider: MyString
+  token: MyString
+  secret: MyString
+
+two:
+  virtue_info_fb_connection_id: 1
+  uid: MyString
+  provider: MyString
+  token: MyString
+  secret: MyString

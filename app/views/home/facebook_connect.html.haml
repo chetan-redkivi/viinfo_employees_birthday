@@ -1,0 +1,42 @@
+#site_content
+  .gallery
+    %ul.images
+      %li.show
+        %img{:alt => "photo_one", :height => "300", :src => "/assets/1.jpg", :width => "950"}/
+      %li
+        %img{:alt => "seascape", :height => "300", :src => "/assets/2.jpg", :width => "950"}/
+      %li
+        %img{:alt => "seascape", :height => "300", :src => "/assets/3.jpg", :width => "950"}/
+  #sidebar_container
+    .sidebar
+      %h3 Latest News
+      %h4 Facebook apps for Virtue Info family will be available on
+      %h5 December 1st, 2012
+      %p
+        2012 sees the redesign of our website. Take a look around and let us know what you think.
+        %br/
+        %a{:href => "#"} Read more
+    .sidebar
+      %h3 Useful Links
+      %ul
+        %li
+          %a{:href => "#"} First Link
+        %li
+          %a{:href => "#"} Another Link
+        %li
+          %a{:href => "#"} And Another
+        %li
+          %a{:href => "#"} One More
+        %li
+          %a{:href => "#"} Last One
+  .content
+    %h1 Welcome to the Vi-Info FB Apps
+    - unless current_vi_employee_authentication.authentication.present?
+      %p
+        You need to connect with vi:info employees birthday facebook apps.....
+      %p
+        %strong Click Here To connect with facebook apps
+      %p
+        = link_to image_tag("facebookConnect.png"),virtue_info_fb_connection_omniauth_authorize_path(:facebook)
+    - else
+      Information...!! You already connected with facebook apps. You Don't  need to connect again.

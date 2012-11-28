@@ -1,45 +1,35 @@
-#mainWrap
-  #mainPanel
-    #menu
-      %ul
-        %li
-          %a{:href => "#"}
-            %span Home
-        %li
-          .blank
-        %li
-          %a{:href => "#"}
-            %span About Us
-        %li
-          .blank
-        %li
-          %a{:href => "#"}
-            %span Support
-        %li
-          .blank
-        %li
-          %a{:href => "#"}
-            %span Forum
-        %li
-          .blank
-        %li
-          %a{:href => "#"}
-            %span Development
-        %li
-          .blank
-        %li
-          %a{:href => "#"}
-            %span Conact Us
-    #loginPanel
-      %h2 Connect with facebook
-      - if virtue_info_fb_connection_signed_in?
-        Connected
-      - else
-        = link_to image_tag("facebookConnect.png"), virtue_info_fb_connection_omniauth_authorize_path(:facebook),:tag=>"Click For Facebook Login"
-      -#%input{:name => "name", :onblur => "if(this.value=='')this.value='User Name'", :onfocus => "if(this.value=='User Name')this.value=''", :type => "text", :value => "User Name"}/
-      -#.blank
-      -#%input{:name => "name", :onblur => "if(this.value=='')this.value='Password'", :onfocus => "if(this.value=='Password')this.value=''", :type => "text", :value => "Password"}/
-      -#%p
-      -#  Not yet a Member?
-      -#  %a{:href => "#"} Register Now
-      -#%a.login{:href => "#"} Login
+%header
+  #logo
+    #logo_text
+      / class="logo_colour", allows you to change the colour of the text
+      %h1
+        %a{:href => "index.html"}
+          Virtue Info
+          %span.logo_colour Employees Birthday Web Apps
+      %h2 Simple. Contemporary. Website Template.
+  %nav
+    %ul#nav.sf-menu
+      %li.selected
+        = link_to "Home",root_url
+      %li
+        - if vi_employee_authentication_signed_in?
+          - @style_val = 'pointer-events: auto;'
+        -else
+          - @style_val = 'pointer-events: none;'
+        %a{:href => "/facebook_connect",:style => @style_val} Use FB Apps
+      %li
+        %a{:href => "#"} I am
+        %ul
+          %li
+            - if user_signed_in?
+              = link_to "Lovout",destroy_user_session_path
+            - else
+              = link_to "An admin",rails_admin_path
+          %li
+            - if vi_employee_authentication_signed_in?
+              = link_to "Logout",destroy_vi_employee_authentication_session_path
+            - else
+              = link_to "Virtue-Info Family",new_vi_employee_authentication_session_path
+      %li
+        %a{:href => "contact.php"}
+

@@ -1,121 +1,95 @@
-%html{:xmlns => "http://www.w3.org/1999/xhtml"}
-  %head
-    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
-    %title ViinfoEmployeesBirthday
-    = stylesheet_link_tag    "style.css", :media => "all"
-    = javascript_include_tag "application"
-    = csrf_meta_tags
-  %body
-    #main
-      %header
-        #logo
-          #logo_text
-            / class="logo_colour", allows you to change the colour of the text
-            %h1
-              %a{:href => "index.html"}
-                CSS3
-                %span.logo_colour _seascape
-            %h2 Simple. Contemporary. Website Template.
-        %nav
-          %ul#nav.sf-menu
-            %li.selected
-              %a{:href => "index.html"} Home
-            %li
-              %a{:href => "examples.html"} Examples
-            %li
-              %a{:href => "page.html"} A Page
-            %li
-              %a{:href => "another_page.html"} Another Page
-            %li
-              %a{:href => "#"} Example Drop Down
-              %ul
-                %li
-                  %a{:href => "#"} Drop Down One
-                %li
-                  %a{:href => "#"} Drop Down Two
-                  %ul
-                    %li
-                      %a{:href => "#"} Sub Drop Down One
-                    %li
-                      %a{:href => "#"} Sub Drop Down Two
-                    %li
-                      %a{:href => "#"} Sub Drop Down Three
-                    %li
-                      %a{:href => "#"} Sub Drop Down Four
-                    %li
-                      %a{:href => "#"} Sub Drop Down Five
-                %li
-                  %a{:href => "#"} Drop Down Three
-                %li
-                  %a{:href => "#"} Drop Down Four
-                %li
-                  %a{:href => "#"} Drop Down Five
-            %li
-              %a{:href => "contact.php"} Contact Us
-      #site_content
-        .gallery
-          %ul.images
-            %li.show
-              %img{:alt => "photo_one", :height => "300", :src => "images/1.jpg", :width => "950"}/
-            %li
-              %img{:alt => "seascape", :height => "300", :src => "images/2.jpg", :width => "950"}/
-            %li
-              %img{:alt => "seascape", :height => "300", :src => "images/3.jpg", :width => "950"}/
-        #sidebar_container
-          .sidebar
-            %h3 Latest News
-            %h4 New Website Launched
-            %h5 January 1st, 2012
-            %p
-              2012 sees the redesign of our website. Take a look around and let us know what you think.
-              %br/
-              %a{:href => "#"} Read more
-          .sidebar
-            %h3 Useful Links
-            %ul
-              %li
-                %a{:href => "#"} First Link
-              %li
-                %a{:href => "#"} Another Link
-              %li
-                %a{:href => "#"} And Another
-              %li
-                %a{:href => "#"} One More
-              %li
-                %a{:href => "#"} Last One
-        .content
-          %h1 Welcome to the CSS3_seascape template
-          %p
-            This simple, fixed width website template is released under a
-            = succeed "." do
-              %a{:href => "http://creativecommons.org/licenses/by/3.0"} Creative Commons Attribution 3.0 Licence
-            This means you are free to download and use it for personal and commercial projects. However, you
-            = succeed "." do
-              %strong must leave the 'design from css3templates.co.uk' link in the footer of the template
-          %p
-            This template is written entirely in
-            %strong HTML5
-            and
-            = succeed "." do
-              %strong CSS3
-            The photos shown in this template were taken by me. You can view more free CSS3 web templates
-            = succeed "." do
-              %a{:href => "http://www.css3templates.co.uk"} here
-          %p
-            This template is a fully documented 5 page website, with an
-            %a{:href => "examples.html"} examples
-            page that gives examples of all the styles available with this design. There is also a working PHP contact form on the contact page. All of the photos were taken by me - use as you wish.
-      %footer
+#site_content
+  .gallery
+    %ul.images
+      %li.show
+        %img{:alt => "photo_one", :height => "300", :src => "/assets/1.jpg", :width => "950"}/
+      %li
+        %img{:alt => "seascape", :height => "300", :src => "/assets/2.jpg", :width => "950"}/
+      %li
+        %img{:alt => "seascape", :height => "300", :src => "/assets/3.jpg", :width => "950"}/
+  #sidebar_container
+    .sidebar
+      %h3 Latest News
+      %h4 Facebook apps for Virtue Info family will be available on
+      %h5 December 1st, 2012
+      %p
+        2012 sees the redesign of our website. Take a look around and let us know what you think.
+        %br/
+        %a{:href => "#"} Read more
+    .sidebar
+      %h3 Useful Links
+      %ul
+        %li
+          %a{:href => "#"} First Link
+        %li
+          %a{:href => "#"} Another Link
+        %li
+          %a{:href => "#"} And Another
+        %li
+          %a{:href => "#"} One More
+        %li
+          %a{:href => "#"} Last One
+  .content
+    - unless current_vi_employee_authentication.present?
+      %h3
+        = flash[:notice]
+      %h1 Welcome to the Virtue-Info Web Apps
+      %p
+        This is the application for Virtue Info employees.If you are family of Virtue Info Web Solutions,then you
+        can use facebook birthday wishing application.
+        -#= succeed "." do
+        -#  %a{:href => "http://creativecommons.org/licenses/by/3.0"} Creative Commons Attribution 3.0 Licence
+        -#This means you are free to download and use it for personal and commercial projects. However, you
+        -#= succeed "." do
+        -#  %strong must leave the 'design from css3templates.co.uk' link in the footer of the template
+      %p
+        This template is written entirely in
+        %strong HTML5
+        and
+        = succeed "." do
+          %strong CSS3
+        The photos shown in this template were taken by me. You can view more free CSS3 web templates
+        = succeed "." do
+          %a{:href => "http://www.css3templates.co.uk"} here
+      %p
+        This template is a fully documented 5 page website, with an
+        %a{:href => "examples.html"} examples
+        page that gives examples of all the styles available with this design. There is also a working PHP contact form on the contact page. All of the photos were taken by me - use as you wish.
+    - else
+      %h3
+        = flash[:notice]
+      - auth = current_vi_employee_authentication.authentication
+      - if auth
+        %h5
+          Congratulations..! You have connected with facebook apps. You Don't  need to connect again.
+        - if @nxt_upcoming_birthdays.present?
+          %h4
+            List of Recently upcoming birthday on facebook...
+
+          %table{:style => "width:100%"}
+            %tr
+              %th{:style => 'text-align:center'}
+                fb image
+              %th{:style => 'text-align:center'}
+                Name
+              %th{:style => 'text-align:center'}
+                BithDate
+              %th{:style => 'text-align:center'}
+                Fb Profile URl
+            - @nxt_upcoming_birthdays.each do |friend|
+              %tr
+                %td{:style => 'text-align:center'}
+                  = link_to image_tag(@graph.get_picture(friend["id"])),friend["link"],:target => "_blank"
+                %td{:style => 'text-align:center'}
+                  = friend["name"]
+                %td{:style => 'text-align:center'}
+                  = friend["birthday"]
+                %td
+                  = friend["link"]
+        - else
+          %h4
+            = flash[:message]
+      - else
         %p
-          Copyright &copy; CSS3_seascape |
-          %a{:href => "http://www.css3templates.co.uk"} design from css3templates.co.uk
-    %p &nbsp;
-    / javascript at the bottom for fast page loading
-    %script{:src => "js/jquery.js", :type => "text/javascript"}
-    %script{:src => "js/jquery.easing-sooper.js", :type => "text/javascript"}
-    %script{:src => "js/jquery.sooperfish.js", :type => "text/javascript"}
-    %script{:src => "js/image_fade.js", :type => "text/javascript"}
-    :javascript
-      $(document).ready(function() {
-        $('ul.sf-menu').sooperfish();
-      });
+          if you want to use automated birthday wishing for facebook friends. Please connect with facebook app.
+          Click On Use FB APP at top menu.
