@@ -12,9 +12,9 @@ class HomeController < ApplicationController
       @nxt_upcoming_birthday = []
       @next_month_bday = []
       employee = current_vi_employee_authentication
-      unless current_vi_employee_authentication.present?
+      if current_vi_employee_authentication.present?
         if current_vi_employee_authentication.authentication.present?
-          @uid = current_vi_employee_authentication.authentication
+          @uid = current_vi_employee_authentication.authentication.uid
           @friends_profile = @graph.get_connections("#{@uid}", "friends", "fields"=>"name,birthday,gender,link")
           @today_birthday = []
           @friends_profile.each do |friend|
