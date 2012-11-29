@@ -7,7 +7,7 @@ RailsAdmin.config do |config|
   ################  Global configuration  ################
 
   # Set the admin name here (optional second array element will appear in red). For example:
-  config.main_app_name = ['Viinfo Employees Birthday', 'Admin']
+  config.main_app_name = ['Viinfo Employees Birthday', 'Admin','Employee']
   # or for a more dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
@@ -51,7 +51,15 @@ RailsAdmin.config do |config|
   # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
 
 
-
+  config.model 'Employee' do
+     edit do
+       configure :name
+       configure :email
+       configure :date_of_birth
+       configure :phone_number
+       configure :status
+     end
+  end
   ###  User  ###
 
   # config.model 'User' do

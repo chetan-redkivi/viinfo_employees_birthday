@@ -2,6 +2,8 @@ namespace :viinfo  do
   require 'koala'
   desc "Send birthday notification to all employees"
   task :birthday_notification => :environment do
+    puts "=================================>Rake Task Begin"
+
     current_date = DateTime.now.new_offset(5.5/24).strftime('%a, %d %b %Y').to_date
     employees_who_have_birthday_today = Employee.where('date_of_birth =?',current_date)
     if employees_who_have_birthday_today.nil? || employees_who_have_birthday_today.blank?
@@ -22,11 +24,16 @@ namespace :viinfo  do
         if @send_mail
           if is_employee_has_birthday
             begin
-              auth.send("9427979695", "Viinfo-BirthDay-Wish: Hi #{employee.name} Virtue-Info family wishing you a very special Birthday.")
+              auth.send("#{employee.phone_number}", "Viinfo-BirthDay-Wish: Hi #{employee.name} Virtue-Info family wishing you a very special Birthday.")
             rescue Exception => e
-              Rails.logger.info("=================================>Error Message For SMS:  #{e.message}")
+              puts "=================================>Error Message For SMS:  #{e.message}"
             end
-            EmployeeMailer.birthday_wish_email(employee).deliver
+            begin
+            puts "=================================== Mail send Successfully"
+             EmployeeMailer.birthday_wish_email(employee).deliver
+            rescue
+              puts "=================================== Mail not send"
+            end
           else
             if @person_names.size > 1
               @names = @person_names.join(',')
@@ -34,9 +41,10 @@ namespace :viinfo  do
               @names = @person_names[0]
             end
             begin
-              auth.send("9427979695", "Viinfo-BirthDay-Alert: Today #{@names} has birthday.")
+              auth.send("#{employee.phone_number}", "Viinfo-BirthDay-Alert: Today #{@names} has birthday.")
+              puts "---------------------------SMS send at #{employee.phone_number}, Name: #{@names}---------------------------"
             rescue Exception => e
-              Rails.logger.info("---------------------------#{e.message}---------------------------")
+              puts "---------------------------#{e.message}---------------------------"
             end
             EmployeeMailer.birthday_reminder_email(employee,@names).deliver
           end
