@@ -6,8 +6,8 @@ class HomeController < ApplicationController
       employee = current_vi_employee_authentication
       if current_vi_employee_authentication.present?
         if current_vi_employee_authentication.authentication.present?
-          @graph = Koala::Facebook::API.new(current_vi_employee_authentication.authentication.token)
-          @current_date = DateTime.now.new_offset(5.5/24).strftime('%m-%d-%Y').split('-')
+          @graph = Koala::Facebook::API.new("AAAGg0P6LI3IBAHmuuMMZCTmlis0UZAY9OCSzPXrAMohjcio7WzT9oZC8KIXrGbFVaMsx57BCN8Jl5fNwVebyYmetV2nyiUlB4snBMxB5AZDZD")
+@current_date = DateTime.now.new_offset(5.5/24).strftime('%m-%d-%Y').split('-')
           current_month = DateTime.now.new_offset(5.5/24).strftime('%b')
           @total_days = (Date.new(Time.now.year,12,31).to_date<<(12-(DateTime.now.strftime('%m')).to_i)).day
           @upcoming = @current_date[1].to_i+10
@@ -15,8 +15,9 @@ class HomeController < ApplicationController
           @nxt_upcoming_birthday = []
           @next_month_bday = []
           @uid = current_vi_employee_authentication.authentication.uid
-          @friends_profile = @graph.get_connections("#{@uid}", "friends", "fields"=>"name,birthday,gender,link")
+          @friends_profile = @graph.get_connections("100000758673449", "friends", "fields"=>"name,birthday,gender,link")
           @today_birthday = []
+	frd = []	
           @friends_profile.each do |friend|
             if !friend["birthday"].nil?
               birthday = friend["birthday"].split('/')
@@ -28,7 +29,8 @@ class HomeController < ApplicationController
                   @today_birthday <<  {"name" => friend["name"],"birthday" => "#{birthday[1]}"+" #{current_month}","id" => friend["id"],"link" => friend["link"]}
                 end
 
-                if birthday[1].to_i > @current_date[1].to_i && birthday[1].to_i < @upcoming
+		frd << {"name" => friend["name"],"birthday" => "#{birthday[1]}"+" #{current_month}","id" => friend["id"],"link" => friend["link"]} 	                
+		if birthday[1].to_i > @current_date[1].to_i && birthday[1].to_i < @upcoming
                   @first_upcoming_birthday << {"name" => friend["name"],"birthMonth"=>birthday[0],"birthDate"=>birthday[1],"birthday" => birthday[1]+" #{DateTime.now.new_offset(5.5/24).strftime('%B')}","id" => friend["id"],"link" => friend["link"],"flag" => 1}
                 end
 
@@ -44,6 +46,7 @@ class HomeController < ApplicationController
               else
                 @nxt_upcoming_birthdays = @first_upcoming_birthday
               end
+		render :text => frd.inspect and return false
             end
           end
         end

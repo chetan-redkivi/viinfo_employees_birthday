@@ -3,10 +3,8 @@ class HomeController < ApplicationController
 
   def index
     begin
-      employee = current_vi_employee_authentication
       if current_vi_employee_authentication.present?
         if current_vi_employee_authentication.authentication.present?
-          @graph = Koala::Facebook::API.new(current_vi_employee_authentication.authentication.token)
           @current_date = DateTime.now.new_offset(5.5/24).strftime('%m-%d-%Y').split('-')
           current_month = DateTime.now.new_offset(5.5/24).strftime('%b')
           @total_days = (Date.new(Time.now.year,12,31).to_date<<(12-(DateTime.now.strftime('%m')).to_i)).day
@@ -14,8 +12,11 @@ class HomeController < ApplicationController
           @first_upcoming_birthday = []
           @nxt_upcoming_birthday = []
           @next_month_bday = []
-          @uid = current_vi_employee_authentication.authentication.uid
-          @friends_profile = @graph.get_connections("#{@uid}", "friends", "fields"=>"name,birthday,gender,link")
+          uid = current_vi_employee_authentication.authentication.uid
+          token =  current_vi_employee_authentication.authentication.token
+          @graph = Koala::Facebook::API.new("#{token}")
+          @friends_profile = @graph.get_connections("#{uid}", "friends", "fields"=>"name,birthday,gender,link")
+          @me =  @graph.get_object("#{uid}")
           @today_birthday = []
           @friends_profile.each do |friend|
             if !friend["birthday"].nil?
@@ -27,7 +28,6 @@ class HomeController < ApplicationController
                   #@today_birthday << friend["id"]
                   @today_birthday <<  {"name" => friend["name"],"birthday" => "#{birthday[1]}"+" #{current_month}","id" => friend["id"],"link" => friend["link"]}
                 end
-
                 if birthday[1].to_i > @current_date[1].to_i && birthday[1].to_i < @upcoming
                   @first_upcoming_birthday << {"name" => friend["name"],"birthMonth"=>birthday[0],"birthDate"=>birthday[1],"birthday" => birthday[1]+" #{DateTime.now.new_offset(5.5/24).strftime('%B')}","id" => friend["id"],"link" => friend["link"],"flag" => 1}
                 end
@@ -49,7 +49,7 @@ class HomeController < ApplicationController
         end
       end
     rescue Exception => e
-      flash[:message]  = "Something went wrong.. Please check your internet connection."
+      flash[:notice]  = "Something went wrong.. Please check your internet connection."
       Rails.logger.info("================================> #{e.message}")
     end
   end

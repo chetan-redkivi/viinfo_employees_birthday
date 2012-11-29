@@ -65,16 +65,23 @@
         - if @today_birthday.present?
           %h4
             List of friends who have birthday today....
-          = render :partial => 'birthday_list',:locals => {:friends => @today_birthday}
-          %table
-
+          = render :partial => 'birthday_list',:locals => {:friends => @today_birthday,:flag => 'today_birthday'}
+        - else
+          %h4
+            Hi
+            = "#{@me["first_name"]},"
+            %br
+            %div{:style => 'margin-left:30%;'}
+              No One have birthday Today.
+            %br
         - if @nxt_upcoming_birthdays.present?
           %h4
             List of upcoming birthday on facebook...
-          = render :partial => 'birthday_list',:locals => {:friends => @nxt_upcoming_birthdays}
+          = render :partial => 'birthday_list',:locals => {:friends => @nxt_upcoming_birthdays,:flag => 'upcoming_birthday'}
         - else
           %h4
-            = flash[:message]
+            %div{:style => 'margin-left:30%;'}
+              You have no friends who has birthday within 10 Days.
       - else
         %p
           if you want to use automated birthday wishing for facebook friends. Please connect with facebook app.
