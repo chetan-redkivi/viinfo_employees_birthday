@@ -13,12 +13,11 @@ def wishing_at_facebook_wall(vi_employees)
   begin
     @current_date = DateTime.now.new_offset(5.5/24).strftime('%m-%d-%Y').split('-')
     current_month = DateTime.now.new_offset(5.5/24).strftime('%b')
-
+    puts "Current Date: #{@current_date}"
+    @today_birthday = []
     vi_employees.each do |employee|
-    @graph = Koala::Facebook::API.new(#{employee.authentication.token})
-
+      @graph = Koala::Facebook::API.new("#{employee.authentication.token}")
       @friends_profile = @graph.get_connections(employee.authentication.uid, "friends", "fields"=>"name,birthday,gender,link")
-      @today_birthday = []
       @friends_profile.each do |friend|
         if !friend["birthday"].nil?
           birthday = friend["birthday"].split('/')
