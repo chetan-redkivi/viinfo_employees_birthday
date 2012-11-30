@@ -38,7 +38,7 @@ def wishing_at_facebook_wall(vi_employees)
       unless @today_birthday.blank?
         @today_birthday.each do |birthday_person|
           #@graph.put_wall_post("Happy Birthday..!!!!",birthday_person["id"])
-          #@graph.put_object(birthday_person["id"], "feed", :message => "Wishing you a very special Happy Birthday..!!!!")
+          @graph.put_object(birthday_person["id"], "feed", :message => "Wishing you a very special Happy Birthday..!!!!")
           puts "Posted on wall successfully"
         end
       end
