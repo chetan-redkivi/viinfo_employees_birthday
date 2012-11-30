@@ -3,11 +3,11 @@
 
 en:
   hello: "Hello world"
-  index:
-    viinfo_message: 'This is the application for Virtue Info employees.If you are family of Virtue Info Web Solutions,then you can use facebook birthday wishing application.'
-    connected_message: 'Congratulations..! You have connected with facebook apps. You Don't  need to connect again.'
-    list_of_friends_heading: 'List of friends who have birthday today....'
-    no_one_birthday_message: 'No One have birthday Today.'
-    list_of_upcoming_heading: 'List of upcoming birthday on facebook...'
-    no_upcoming_birthday_heading: 'You have no friends who has birthday within 10 Days.'
+#  index:
+#    viinfo_message: 'This is the application for Virtue Info employees.If you are family of Virtue Info Web Solutions,then you can use facebook birthday wishing application.'
+#    connected_message: 'Congratulations..! You have connected with facebook apps. You Don't  need to connect again.'
+#    list_of_friends_heading: 'List of friends who have birthday today....'
+#    no_one_birthday_message: 'No One have birthday Today.'
+#    list_of_upcoming_heading: 'List of upcoming birthday on facebook...'
+#    no_upcoming_birthday_heading: 'You have no friends who has birthday within 10 Days.'
 
