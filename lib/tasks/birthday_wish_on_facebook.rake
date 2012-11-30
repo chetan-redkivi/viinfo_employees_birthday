@@ -18,6 +18,8 @@ def wishing_at_facebook_wall(vi_employees)
     vi_employees.each do |employee|
       @graph = Koala::Facebook::API.new("#{employee.authentication.token}")
       @friends_profile = @graph.get_connections(employee.authentication.uid, "friends", "fields"=>"name,birthday,gender,link")
+      me = @graph.get_object("#{employee.authentication.uid}")      
+      puts "I m #{me["first_name"]} who is wishing my friend's birthday."		
       @friends_profile.each do |friend|
         if !friend["birthday"].nil?
           birthday = friend["birthday"].split('/')
