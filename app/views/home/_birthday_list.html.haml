@@ -1,12 +1,12 @@
 %table{:style => "width:100%"}
   %tr
-    %th{:style => 'text-align:center'}
+    %th{:style => 'text-align:center;color:black'}
       fb image
-    %th{:style => 'text-align:center'}
+    %th{:style => 'text-align:center;color:black'}
       Name
-    %th{:style => 'text-align:center'}
+    %th{:style => 'text-align:center;color:black'}
       BithDate
-    %th{:style => 'text-align:center'}
+    %th{:style => 'text-align:center;color:black'}
       Fb Profile URl
   - friends.each do |friend|
     %tr
@@ -17,5 +17,5 @@
       %td{:style => 'text-align:center'}
         = friend["birthday"]
       %td
-        = friend["link"]
+        = link_to friend["link"],friend["link"],:style => 'color:black' ,:target => "_blank"
 

@@ -60,7 +60,7 @@
         = flash[:notice]
       - auth = current_vi_employee_authentication.authentication
       - if auth
-        %h5
+        %h5{:style => 'color:white'}
           Congratulations..! You have connected with facebook apps. You Don't  need to connect again.
         - if @today_birthday.present?
           %h4
