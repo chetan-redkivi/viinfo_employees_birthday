@@ -20,15 +20,15 @@
       %h3 Useful Links
       %ul
         %li
-          %a{:href => "#"} First Link
+          %a{:href => "javascript:void(0)"} First Link
         %li
-          %a{:href => "#"} Another Link
+          %a{:href => "javascript:void(0)"} Another Link
         %li
-          %a{:href => "#"} And Another
+          %a{:href => "javascript:void(0)"} And Another
         %li
-          %a{:href => "#"} One More
+          %a{:href => "javascript:void(0)"} One More
         %li
-          %a{:href => "#"} Last One
+          %a{:href => "javascript:void(0)"} Last One
   .content
     - unless current_vi_employee_authentication.present?
       %h3
@@ -36,19 +36,6 @@
       %h1 Welcome to the Virtue-Info Web Apps
       %p
         #{t 'home.viinfo-message'}
-      %p
-        This template is written entirely in
-        %strong HTML5
-        and
-        = succeed "." do
-          %strong CSS3
-        The photos shown in this template were taken by me. You can view more free CSS3 web templates
-        = succeed "." do
-          %a{:href => "http://www.css3templates.co.uk"} here
-      %p
-        This template is a fully documented 5 page website, with an
-        %a{:href => "examples.html"} examples
-        page that gives examples of all the styles available with this design. There is also a working PHP contact form on the contact page. All of the photos were taken by me - use as you wish.
     - else
       %h3
         = flash[:notice]
