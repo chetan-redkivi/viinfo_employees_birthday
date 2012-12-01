@@ -24,7 +24,7 @@ namespace :viinfo  do
         if @send_mail
           if is_employee_has_birthday
             begin
-              auth.send("#{employee.phone_number}", "Viinfo-BirthDay-Wish: Hi #{employee.name} Virtue-Info family wishing you a very special Birthday.")
+              auth.send("#{employee.phone_number}", "Virtue-Info-BirthDay-Wish: Hi #{employee.name}, Virtue-Info Family Wishing You a Very Special Birthday.")
             rescue Exception => e
               puts "=================================>Error Message For SMS:  #{e.message}"
             end

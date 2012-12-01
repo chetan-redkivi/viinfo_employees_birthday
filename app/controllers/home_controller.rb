@@ -6,7 +6,7 @@ class HomeController < ApplicationController
       if current_vi_employee_authentication.present?
         if current_vi_employee_authentication.authentication.present?
           @current_date = DateTime.now.new_offset(5.5/24).strftime('%m-%d-%Y').split('-')
-          current_month = DateTime.now.new_offset(5.5/24).strftime('%b')
+          current_month = DateTime.now.new_offset(5.5/24).strftime('%B')
           @total_days = (Date.new(Time.now.year,12,31).to_date<<(12-(DateTime.now.strftime('%m')).to_i)).day
           @upcoming = @current_date[1].to_i+10
           @first_upcoming_birthday = []
@@ -29,7 +29,7 @@ class HomeController < ApplicationController
                   @today_birthday <<  {"name" => friend["name"],"birthday" => "#{birthday[1]}"+" #{current_month}","id" => friend["id"],"link" => friend["link"]}
                 end
                 if birthday[1].to_i > @current_date[1].to_i && birthday[1].to_i < @upcoming
-                  @first_upcoming_birthday << {"name" => friend["name"],"birthMonth"=>birthday[0],"birthDate"=>birthday[1],"birthday" => birthday[1]+" #{DateTime.now.new_offset(5.5/24).strftime('%B')}","id" => friend["id"],"link" => friend["link"],"flag" => 1}
+                  @first_upcoming_birthday << {"name" => friend["name"],"birthMonth"=>birthday[0],"birthDate"=>birthday[1],"birthday" => birthday[1]+" #{current_month}","id" => friend["id"],"link" => friend["link"],"flag" => 1}
                 end
 
               elsif birthday[0].to_i == @current_date[0].to_i+1
