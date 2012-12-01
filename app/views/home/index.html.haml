@@ -35,13 +35,7 @@
         = flash[:notice]
       %h1 Welcome to the Virtue-Info Web Apps
       %p
-        This is the application for Virtue Info employees.If you are family of Virtue Info Web Solutions,then you
-        can use facebook birthday wishing application.
-        -#= succeed "." do
-        -#  %a{:href => "http://creativecommons.org/licenses/by/3.0"} Creative Commons Attribution 3.0 Licence
-        -#This means you are free to download and use it for personal and commercial projects. However, you
-        -#= succeed "." do
-        -#  %strong must leave the 'design from css3templates.co.uk' link in the footer of the template
+        #{t 'home.viinfo-message'}
       %p
         This template is written entirely in
         %strong HTML5
@@ -61,10 +55,10 @@
       - auth = current_vi_employee_authentication.authentication
       - if auth
         %h5{:style => 'color:white'}
-          Congratulations..! You have connected with facebook apps. You Don't  need to connect again.
+          #{t 'home.connected_message'}
         - if @today_birthday.present?
           %h4
-            List of friends who have birthday today....
+            #{t 'home.list_of_friends_heading'}
           = render :partial => 'birthday_list',:locals => {:friends => @today_birthday,:flag => 'today_birthday'}
         - else
           %h4
@@ -72,16 +66,16 @@
             = "#{@me["first_name"]},"
             %br
             %div{:style => 'margin-left:30%;'}
-              No One have birthday Today.
+              #{t 'home.no_one_birthday_message'}
             %br
         - if @nxt_upcoming_birthdays.present?
           %h4
-            List of upcoming birthday on facebook...
+            #{t 'home.list_of_upcoming_heading'}
           = render :partial => 'birthday_list',:locals => {:friends => @nxt_upcoming_birthdays,:flag => 'upcoming_birthday'}
         - else
           %h4
             %div{:style => 'margin-left:30%;'}
-              You have no friends who has birthday within 10 Days.
+              #{t 'home.no_upcoming_birthday_heading'}
       - else
         %p
           if you want to use automated birthday wishing for facebook friends. Please connect with facebook app.
