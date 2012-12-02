@@ -44,7 +44,12 @@ def wishing_at_facebook_wall(vi_employees)
             @message = custom_message.message
           end
           #@graph.put_wall_post("Happy Birthday..!!!!",birthday_person["id"])
-          @graph.put_object(birthday_person["id"], "feed", :message => "#{@message}")
+          begin
+            @graph.put_object(birthday_person["id"], "feed", :message => "#{@message}")
+          rescue Exception => e
+            puts "==================================Facebook api graph error: #{e.message}"
+          end
+
           begin
             EmployeeMailer.confirmation_email_after_post_at_fb_wall(employee,birthday_person["name"]).deliver
           rescue Exception => e

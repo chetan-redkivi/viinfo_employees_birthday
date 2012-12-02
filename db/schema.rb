@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121201213441) do
+ActiveRecord::Schema.define(:version => 20121202204248) do
 
   create_table "authentications", :force => true do |t|
     t.string   "uid"
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(:version => 20121201213441) do
   create_table "custom_messages", :force => true do |t|
     t.string   "friend_uid"
     t.text     "message"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "vi_employee_authentication_id"
   end
 
   create_table "employees", :force => true do |t|

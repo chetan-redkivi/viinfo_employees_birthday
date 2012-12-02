@@ -40,23 +40,39 @@ class CustomMessagesController < ApplicationController
   # POST /custom_messages
   # POST /custom_messages.json
   def create
-    no_message_available = CustomMessage.find_by_friend_uid(params[:custom_message]["friend_uid"]).nil?
-    if no_message_available
-      @custom_message = CustomMessage.new(params[:custom_message])
-
-        if @custom_message.save
-          flash[:notice] = "Your message has been successfully added"
-          redirect_to root_url
-        end
-    else
-      @custom_message = CustomMessage.find_by_friend_uid(params[:custom_message]["friend_uid"])
-      if @custom_message.update_attributes(params[:custom_message])
-        flash[:notice] = "Your message has been updated successfully"
-        redirect_to root_url
+    current_id = current_vi_employee_authentication.id
+    friend_uid = params[:custom_message]["friend_uid"]
+    no_message_available = CustomMessage.find_by_friend_uid_and_vi_employee_authentication_id(params[:custom_message]["friend_uid"],current_id).nil?
+    unless params[:is_birthday_today] == "true"
+      if no_message_available
+        @custom_message = CustomMessage.new(params[:custom_message])
+        @custom_message.vi_employee_authentication_id = current_vi_employee_authentication.id
+          if @custom_message.save
+            flash[:notice] = "Your message has been successfully added"
+          end
       else
-        flash[:error] = "We are sorry, please update again."
+        @custom_message = CustomMessage.find_by_friend_uid_and_vi_employee_authentication_id(friend_uid,current_id)
+        render :text => @custom_message.inspect and return false
+        if @custom_message.update_attributes(params[:custom_message])
+          flash[:notice] = "Your message has been updated successfully"
+        else
+          flash[:error] = "We are sorry, please update again."
+        end
+      end
+    else
+      token = current_vi_employee_authentication.authentication.token
+      @graph = Koala::Facebook::API.new("#{token}")
+      begin
+        unless params[:custom_message][:message].blank?
+          @graph.put_object(friend_uid, "feed", :message => "#{params[:custom_message][:message]}")
+          flash[:notice] = "Message posted at facebook wall"
+          puts "==================================Successfully updated wall"
+        end
+      rescue Exception => e
+        puts "==================================Facebook api graph error: #{e.message}"
       end
     end
+    redirect_to root_url and return
   end
 
   # PUT /custom_messages/1

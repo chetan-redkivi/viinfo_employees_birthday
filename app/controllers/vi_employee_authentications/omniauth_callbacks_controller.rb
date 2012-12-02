@@ -18,7 +18,7 @@ class ViEmployeeAuthentications::OmniauthCallbacksController < Devise::OmniauthC
       authentication.secret = request.env["omniauth.auth"].credentials.secret
       authentication.vi_employee_authentication_id = current_vi_employee_authentication.id
       authentication.save
-		end
+	end
     redirect_to root_url
   end
 
