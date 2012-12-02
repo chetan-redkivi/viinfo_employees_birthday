@@ -44,7 +44,7 @@
                 %h4
                   = "#{friend["name"]} will get this message on #{(friend["gender"] == "male")? "his":"her"} birthday"
                 %br
-                = text_area_tag 'custom_message[message]',"#{(get_custom_message.nil?)? "": get_custom_message.message}",:rows=>6, :cols=>68,:style => 'resize:none'
+                = text_area_tag 'custom_message[message]',"#{(get_custom_message.nil?)? "": get_custom_message.message}",:rows=>6, :cols=>60,:style => 'resize:none'
               .actions{:Style => 'margin:10px 224px'}
                 = f.submit 'Save'
         &nbsp;
