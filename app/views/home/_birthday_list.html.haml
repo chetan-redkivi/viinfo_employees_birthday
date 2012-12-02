@@ -1,3 +1,5 @@
+-#%script{:language => "JavaScript", :src => "http://files.main.bloggerstop.net/uploads/3/0/2/5/3025338/falling_snowflakes.js"}
+
 %table{:style => "width:100%"}
   %tr
     %th{:style => 'text-align:center;color:black'}
@@ -7,8 +9,9 @@
     %th{:style => 'text-align:center;color:black'}
       BithDate
     %th{:style => 'text-align:center;color:black'}
-      Fb Profile URl
+      Set your message
   - friends.each do |friend|
+    - get_custom_message = CustomMessage.find_by_friend_uid(friend["id"])
     %tr
       %td{:style => 'text-align:center'}
         = link_to image_tag(@graph.get_picture(friend["id"])),friend["link"],:target => "_blank"
@@ -17,5 +20,33 @@
       %td{:style => 'text-align:center'}
         = friend["birthday"]
       %td
-        = link_to friend["link"],friend["link"],:style => 'color:black' ,:target => "_blank"
+        %a.openmodalbox{:href => "javascript:void(0);"}
+          Set Message
+          %span.modalboxContent
+            = form_for @custom_message do |f|
+              - if @custom_message.errors.any?
+                #error_explanation
+                  %h2= "#{pluralize(@custom_message.errors.count, "error")} prohibited this custom_message from being saved:"
+                  %ul
+                    - @custom_message.errors.full_messages.each do |msg|
+                      %li= msg
 
+              .field
+                -#= f.label :friend_uid
+                = hidden_field_tag 'custom_message[friend_uid]',friend["id"]
+              .field
+                %h2{:style => 'text-align:center'}
+                  = "Please Set message for your friend's Birthday"
+
+                = image_tag(@graph.get_picture(friend["id"]))
+                %br
+                %br
+                %h4
+                  = "#{friend["name"]} will get this message on #{(friend["gender"] == "male")? "his":"her"} birthday"
+                %br
+                = text_area_tag 'custom_message[message]',"#{(get_custom_message.nil?)? "": get_custom_message.message}",:rows=>6, :cols=>68,:style => 'resize:none'
+              .actions{:Style => 'margin:10px 224px'}
+                = f.submit 'Save'
+        &nbsp;
+        - unless get_custom_message.nil?
+          = link_to 'Delete Message', get_custom_message, method: :delete, data: { confirm: 'Are you sure?' }

@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   require 'chagol'
 
   def index
+    @custom_message = CustomMessage.new
     begin
       if current_vi_employee_authentication.present?
         if current_vi_employee_authentication.authentication.present?
@@ -14,9 +15,14 @@ class HomeController < ApplicationController
           @next_month_bday = []
           uid = current_vi_employee_authentication.authentication.uid
           token =  current_vi_employee_authentication.authentication.token
-          @graph = Koala::Facebook::API.new("#{token}")
-          @friends_profile = @graph.get_connections("#{uid}", "friends", "fields"=>"name,birthday,gender,link")
-          @me =  @graph.get_object("#{uid}")
+          begin
+            @graph = Koala::Facebook::API.new("#{token}")
+            @friends_profile = @graph.get_connections("#{uid}", "friends", "fields"=>"name,birthday,gender,link")
+            @me =  @graph.get_object("#{uid}")
+          rescue Exception => e
+            flash[:notice] = "Not able to fetch friends birthday"
+            Rails.logger.info("=============================>Facebook Graph API ERROR: #{e.message}")
+          end
           @today_birthday = []
           @friends_profile.each do |friend|
             if !friend["birthday"].nil?
@@ -26,15 +32,15 @@ class HomeController < ApplicationController
                 if @current_date[1]==birthday[1]
                   #Date is same
                   #@today_birthday << friend["id"]
-                  @today_birthday <<  {"name" => friend["name"],"birthday" => "#{birthday[1]}"+" #{current_month}","id" => friend["id"],"link" => friend["link"]}
+                  @today_birthday <<  {"name" => friend["name"],"birthday" => "#{birthday[1]}"+" #{current_month}","id" => friend["id"],"link" => friend["link"],"gender" => friend["gender"]}
                 end
                 if birthday[1].to_i > @current_date[1].to_i && birthday[1].to_i < @upcoming
-                  @first_upcoming_birthday << {"name" => friend["name"],"birthMonth"=>birthday[0],"birthDate"=>birthday[1],"birthday" => birthday[1]+" #{current_month}","id" => friend["id"],"link" => friend["link"],"flag" => 1}
+                  @first_upcoming_birthday << {"name" => friend["name"],"birthMonth"=>birthday[0],"birthDate"=>birthday[1],"birthday" => birthday[1]+" #{current_month}","id" => friend["id"],"link" => friend["link"],"flag" => 1,"gender" => friend["gender"]}
                 end
 
               elsif birthday[0].to_i == @current_date[0].to_i+1
                 if birthday[1].to_i >=1 && birthday[1].to_i < (@upcoming-@total_days.to_i)
-                  @nxt_upcoming_birthday << {"name" => friend["name"],"birthMonth"=>birthday[0],"birthDate"=>birthday[1],"birthday" => birthday[1]+" #{(DateTime.now + 1.month).new_offset(5.5/24).strftime('%B')}","id" => friend["id"],"link" => friend["link"]}
+                  @nxt_upcoming_birthday << {"name" => friend["name"],"birthMonth"=>birthday[0],"birthDate"=>birthday[1],"birthday" => birthday[1]+" #{(DateTime.now + 1.month).new_offset(5.5/24).strftime('%B')}","id" => friend["id"],"link" => friend["link"],"gender" => friend["gender"]}
                 end
                 @next_month_bday << {"name" => friend["name"],"birthday" => birthday[1],"id" => friend["id"]}
               end

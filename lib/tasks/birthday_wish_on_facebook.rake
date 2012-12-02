@@ -37,8 +37,19 @@ def wishing_at_facebook_wall(vi_employees)
       puts @today_birthday
       unless @today_birthday.blank?
         @today_birthday.each do |birthday_person|
+          custom_message = CustomMessage.find_by_friend_uid(birthday_person["id"])
+          if custom_message.nil? || custom_message.blank?
+            @message = "Wishing you a very special Happy Birthday..!!!!"
+          else
+            @message = custom_message.message
+          end
           #@graph.put_wall_post("Happy Birthday..!!!!",birthday_person["id"])
-          @graph.put_object(birthday_person["id"], "feed", :message => "Wishing you a very special Happy Birthday..!!!!")
+          @graph.put_object(birthday_person["id"], "feed", :message => "#{@message}")
+          begin
+            EmployeeMailer.confirmation_email_after_post_at_fb_wall(employee,birthday_person["name"]).deliver
+          rescue Exception => e
+            Rails.logger.info("======================== Confirmation mail failed: #{e.message}")
+          end
           puts "Posted on wall successfully"
         end
       end

@@ -1,0 +1,12 @@
+/home/chetan/.rvm/gems/ruby-1.9.3-p194@global/gems/bundler-1.1.3/lib/bundler/spec_set.rb:90:in `block in materialize': Could not find rails_admin-0.2.0 in any of the sources (Bundler::GemNotFound)
+	from /home/chetan/.rvm/gems/ruby-1.9.3-p194@global/gems/bundler-1.1.3/lib/bundler/spec_set.rb:83:in `map!'
+	from /home/chetan/.rvm/gems/ruby-1.9.3-p194@global/gems/bundler-1.1.3/lib/bundler/spec_set.rb:83:in `materialize'
+	from /home/chetan/.rvm/gems/ruby-1.9.3-p194@global/gems/bundler-1.1.3/lib/bundler/definition.rb:127:in `specs'
+	from /home/chetan/.rvm/gems/ruby-1.9.3-p194@global/gems/bundler-1.1.3/lib/bundler/definition.rb:172:in `specs_for'
+	from /home/chetan/.rvm/gems/ruby-1.9.3-p194@global/gems/bundler-1.1.3/lib/bundler/definition.rb:161:in `requested_specs'
+	from /home/chetan/.rvm/gems/ruby-1.9.3-p194@global/gems/bundler-1.1.3/lib/bundler/environment.rb:23:in `requested_specs'
+	from /home/chetan/.rvm/gems/ruby-1.9.3-p194@global/gems/bundler-1.1.3/lib/bundler/runtime.rb:11:in `setup'
+	from /home/chetan/.rvm/gems/ruby-1.9.3-p194@global/gems/bundler-1.1.3/lib/bundler.rb:107:in `setup'
+	from /home/chetan/.rvm/gems/ruby-1.9.3-p194@global/gems/bundler-1.1.3/lib/bundler/setup.rb:17:in `<top (required)>'
+	from /home/chetan/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require'
+	from /home/chetan/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require'

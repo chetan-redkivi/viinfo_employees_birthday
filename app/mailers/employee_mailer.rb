@@ -1,5 +1,5 @@
 class EmployeeMailer < ActionMailer::Base
-  default from: "chetankumar.virtueinfo@gmail.com"
+  default from: "forchetan01@gmail.com"
 
   def birthday_wish_email(employee)
     @employee = employee
@@ -12,4 +12,11 @@ class EmployeeMailer < ActionMailer::Base
     @url  = "http://example.com/login"
     mail(:to => @employee.email, :subject => "Today, some has Birthday")
   end
+
+  def confirmation_email_after_post_at_fb_wall(employee,friend_name)
+    @employee = employee
+    @friend_name = friend_name
+    mail(:to => @employee.email, :subject => "Successfully posted on facebook wall")
+  end
+
 end

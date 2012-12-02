@@ -17,39 +17,48 @@ namespace :viinfo  do
       end
     end
     employees = Employee.all
-    auth = Chagol::SmsSender.new("8460455479","Q982919R","way2sms")
-    employees.each do |employee|
-      unless employee.email.nil?
-        is_employee_has_birthday = employees_who_have_birthday_today.include?(employee)
-        if @send_mail
-          if is_employee_has_birthday
-            begin
-              auth.send("#{employee.phone_number}", "Virtue-Info-BirthDay-Wish: Hi #{employee.name}, Virtue-Info Family Wishing You a Very Special Birthday.")
-            rescue Exception => e
-              puts "=================================>Error Message For SMS:  #{e.message}"
-            end
-            begin
-            puts "=================================== Mail send Successfully"
-             EmployeeMailer.birthday_wish_email(employee).deliver
-            rescue
-              puts "=================================== Mail not send"
-            end
-          else
-            if @person_names.size > 1
-              @names = @person_names.join(',')
+    auth = Chagol::SmsSender.new("#{ENV["COMPANY_WAYTOSMS_NO"]}","#{ENV["WAYTOSMS_PSWD"]}","#{ENV["PROVIDER"]}")
+    if employees.present?
+      employees.each do |employee|
+        unless employee.email.nil?
+          is_employee_has_birthday = employees_who_have_birthday_today.include?(employee)
+          if @send_mail
+            if is_employee_has_birthday
+              begin
+                auth.send("#{employee.phone_number}", "Virtue-Info-BirthDay-Wish: Hi #{employee.name}, Virtue-Info Family Wishing You a Very Special Birthday.")
+              rescue Exception => e
+                puts "=================================>Error Message For SMS:  #{e.message}"
+              end
+              begin
+              puts "=================================== Mail send Successfully"
+               EmployeeMailer.birthday_wish_email(employee).deliver
+              rescue
+                puts "=================================== Mail not send"
+              end
             else
-              @names = @person_names[0]
+              if @person_names.size > 1
+                @names = @person_names.join(',')
+              else
+                @names = @person_names[0]
+              end
+              begin
+                auth.send("#{employee.phone_number}", "Viinfo-BirthDay-Alert: Today #{@names} has birthday.")
+                puts "---------------------------SMS send at #{employee.phone_number}, Name: #{@names}---------------------------"
+              rescue Exception => e
+                puts "---------------------------#{e.message}---------------------------"
+              end
+              begin
+                EmployeeMailer.birthday_reminder_email(employee,@names).deliver
+                puts "======================================> Reminder Mail Send Successfully"
+              rescue Exception => e
+                puts "======================================> Reminder Mail not send: Error: #{e.message}"
+              end
             end
-            begin
-              auth.send("#{employee.phone_number}", "Viinfo-BirthDay-Alert: Today #{@names} has birthday.")
-              puts "---------------------------SMS send at #{employee.phone_number}, Name: #{@names}---------------------------"
-            rescue Exception => e
-              puts "---------------------------#{e.message}---------------------------"
-            end
-            EmployeeMailer.birthday_reminder_email(employee,@names).deliver
           end
         end
       end
+    else
+      puts "===============================> No employee present to Send mail"
     end
   end
 end
