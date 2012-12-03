@@ -63,7 +63,7 @@ class HomeController < ApplicationController
           @nxt_upcoming_birthdays = @nxt_upcoming_birthday.sort_by { |hsh| hsh["birthday"] }
           @nxt_upcoming_birthdays = @first_upcoming_birthday+@nxt_upcoming_birthday
         else
-          @nxt_upcoming_birthdays = @first_upcoming_birthday
+          @nxt_upcoming_birthdays = @first_upcoming_birthday.sort_by { |hsh| hsh["birthday"] } if @first_upcoming_birthday.present?
         end
       end
     end
