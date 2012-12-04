@@ -46,16 +46,15 @@ def wishing_at_facebook_wall(vi_employees)
           #@graph.put_wall_post("Happy Birthday..!!!!",birthday_person["id"])
           begin
             @graph.put_object(birthday_person["id"], "feed", :message => "#{@message}")
+            puts "Posted on wall successfully"
+            begin
+              EmployeeMailer.confirmation_email_after_post_at_fb_wall(employee,birthday_person["name"]).deliver
+            rescue Exception => e
+              Rails.logger.info("======================== Confirmation mail failed: #{e.message}")
+            end
           rescue Exception => e
             puts "==================================Facebook api graph error: #{e.message}"
           end
-
-          begin
-            EmployeeMailer.confirmation_email_after_post_at_fb_wall(employee,birthday_person["name"]).deliver
-          rescue Exception => e
-            Rails.logger.info("======================== Confirmation mail failed: #{e.message}")
-          end
-          puts "Posted on wall successfully"
         end
       end
     end
