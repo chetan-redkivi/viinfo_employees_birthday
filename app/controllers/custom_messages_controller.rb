@@ -52,7 +52,6 @@ class CustomMessagesController < ApplicationController
           end
       else
         @custom_message = CustomMessage.find_by_friend_uid_and_vi_employee_authentication_id(friend_uid,current_id)
-        render :text => @custom_message.inspect and return false
         if @custom_message.update_attributes(params[:custom_message])
           flash[:notice] = "Your message has been updated successfully"
         else
