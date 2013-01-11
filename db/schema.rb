@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(:version => 20121202204248) do
 
   create_table "authentications", :force => true do |t|
+    t.integer  "vi_employee_authentication_id"
     t.string   "uid"
     t.string   "provider"
     t.string   "token"
     t.string   "secret"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
-    t.integer  "vi_employee_authentication_id"
   end
 
   create_table "custom_messages", :force => true do |t|
