@@ -12,12 +12,6 @@
       %li.selected
         = link_to "Home",root_url
       %li
-        - if vi_employee_authentication_signed_in?
-          - @style_val = 'pointer-events: auto;'
-        -else
-          - @style_val = 'pointer-events: none;'
-        %a{:href => "/facebook_connect",:style => @style_val} Use FB Apps
-      %li
         %a{:href => "#"} I am
         %ul
           %li
@@ -25,11 +19,6 @@
               = link_to "Logout",destroy_user_session_path
             - else
               = link_to "An admin",rails_admin_path
-          %li
-            - if vi_employee_authentication_signed_in?
-              = link_to "Logout",destroy_vi_employee_authentication_session_path
-            - else
-              = link_to "Virtue-Info Family",new_vi_employee_authentication_session_path
       %li
         %a{:href => "contact.php"}
 

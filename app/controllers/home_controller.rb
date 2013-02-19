@@ -2,27 +2,6 @@ class HomeController < ApplicationController
   require 'chagol'
 
   def index
-    @custom_message = CustomMessage.new
-    begin
-      if current_vi_employee_authentication.present?
-        if current_vi_employee_authentication.authentication.present?
-          current_month, token, uid = initialise_objects()
-          begin
-            @graph = Koala::Facebook::API.new("#{token}")
-            @friends_profile = @graph.get_connections("#{uid}", "friends", "fields"=>"name,birthday,gender,link")
-            @me =  @graph.get_object("#{uid}")
-          rescue Exception => e
-            flash[:notice] = "Not able to fetch friends birthday"
-            Rails.logger.info("=============================>Facebook Graph API ERROR: #{e.message}")
-          end
-          @today_birthday = []
-          get_todays_and_next_birthdays(current_month)
-        end
-      end
-    rescue Exception => e
-      flash[:notice]  = "Something went wrong.. Please check your internet connection."
-      Rails.logger.info("================================> #{e.message}")
-    end
   end
 
   def initialise_objects

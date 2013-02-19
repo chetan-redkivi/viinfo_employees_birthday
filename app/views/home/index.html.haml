@@ -30,40 +30,8 @@
         %li
           %a{:href => "javascript:void(0)"} Last One
   .content
-    - unless current_vi_employee_authentication.present?
-      %h3
-        = flash[:notice]
-      %h1 Welcome to the Virtue-Info Web Apps
-      %p
-        #{t 'home.viinfo-message'}
-    - else
-      %h3
-        = flash[:notice]
-      - auth = current_vi_employee_authentication.authentication
-      - if auth
-        %h5{:style => 'color:white'}
-          #{t 'home.connected_message'}
-        - if @today_birthday.present?
-          %h4
-            #{t 'home.list_of_friends_heading'}
-          = render :partial => 'birthday_list',:locals => {:friends => @today_birthday,:flag => 'today_birthday'}
-        - else
-          %h4
-            Hi
-            = "#{@me["first_name"]},"
-            %br
-            %div{:style => 'margin-left:30%;'}
-              #{t 'home.no_one_birthday_message'}
-            %br
-        - if @nxt_upcoming_birthdays.present?
-          %h4
-            #{t 'home.list_of_upcoming_heading'}
-          = render :partial => 'birthday_list',:locals => {:friends => @nxt_upcoming_birthdays,:flag => 'upcoming_birthday'}
-        - else
-          %h4
-            %div{:style => 'margin-left:30%;'}
-              #{t 'home.no_upcoming_birthday_heading'}
-      - else
-        %p
-          if you want to use automated birthday wishing for facebook friends. Please connect with facebook app.
-          Click On Use FB APP at top menu.
+    %h3
+      = flash[:notice]
+    %h1 Welcome to the Virtue-Info Web Apps
+    %p
+      #{t 'home.viinfo-message'}
