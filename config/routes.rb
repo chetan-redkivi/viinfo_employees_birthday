@@ -1,7 +1,6 @@
 ViinfoEmployeesBirthday::Application.routes.draw do
 
 
-  resources :custom_messages
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
